@@ -57,7 +57,7 @@
 스케줄러는 API 서버가 디스크립션을 처리할 때 사용 가능한 워커 노드로 컨테이너의 지정 그룹을 예약합니다. 그런 다음 해당 노드의 Kubelet 은 필요한 컨테이너 이미지를 가져와 컨테이너를 실행하도록 런타임(도커)에 지시합니다. 아래 그림은 이러한 과정을 잘 나타내고 있습니다.
 
 <figure>
-  <img src="/media/kubernetes_basic/___.jpeg" alt="" width="600"/>
+  <img src="./kubernetes_basic/___.jpeg" alt="" width="600"/>
   <figcaption style="color: grey;">쿠버네티스 아키텍처 & 애플리케이션 실행 과정</figcaption>
 </figure>
 
