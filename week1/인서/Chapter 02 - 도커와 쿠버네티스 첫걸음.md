@@ -21,11 +21,13 @@
  - kubectl run 명령어를 사용해 JSON이나 YAML을 사용하지 않고 필요한 모든 구성 요소를 생성할 수 있음.
  - 파드(Pod) : 하나 이상의 밀접하게 연관된 컨테이너의 그룹. 같은 워커 노드에서 같은 리눅스 네임스페이스로 실행됨.
  - kubectl get pods : 파드 조회하기
+
 <p align="center">
  <img src="./image02-01.jpg" width="500" />
  <br />
  레플리케이션컨트롤러, 파드, 서비스의 관계
 </p>
+
  - 외부에서 파드에 접근하려면 서비스 오브젝트를 생성해야 함.
  - kubectl expose rc 명령어를 이용해 레플리케이션컨트롤러를 노출하도록 명령한다.
  - kubectl get services 명령어를 통해 서비스 오브젝트 확인, kubectl get svc 명령어로 외부 IP를 확인
