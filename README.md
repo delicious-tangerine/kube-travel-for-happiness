@@ -25,8 +25,8 @@ kube씨의 행복 여행(쿠버네티스 스터디)
 |주|날짜|토픽|과제|MVP|
 |:----:|:----:|:-----:|:-----:|:----:|
 |첫 주|2021.03.07|Orientation|자기소개 README 추가||
-|둘째 주|2021.03.14|Docker & Kubernetes|||
-|셋째주|||||
+|둘째 주|2021.03.14|Docker & Kubernetes|Pod 관련 정리하기|@superjisonic, @KimDoubleB|
+|셋째 주|2021.03.21|Pod|||
 
 
 ### Contributors
