@@ -614,6 +614,15 @@ spec:
 
 <br>
 
+***참고***
+
+**k8s에 Nginx Ingress Controller는 있지만 Apache Ingress Controller는 없다. 그 이유가 어떤 것이 있을까?**
+
+Nginx는 단일 프로세스 모델, 아파치는 여러 프로세스에서 요청을 처리하는 모델이며 자원 사용 측면에서 Nginx가 더 유리하다. 대신 아파치 쪽이 설정 튜닝할 수 있는 부분이 더 많음. 또한 Nginx는 비동기, Event Driven 방식이기 때문에 수평적 확장성이 높다.
+개인적으로는 Nginx의 설정 파일이 좀 더 사용하기 간편했던 것 같음
+
+<br>
+
 ---
 ---
 
