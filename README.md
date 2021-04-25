@@ -28,7 +28,8 @@ kube씨의 행복 여행(쿠버네티스 스터디)
 |둘째 주|2021.03.14|Docker & Kubernetes|Pod 관련 정리하기|@superjisonic, @KimDoubleB|
 |셋째 주|2021.03.21|Pod|Replication과 그 밖의 컨트롤러 정리하기|@toneyparky|
 |넷째 주|2021.03.28|Replication과 그 밖의 컨트롤러|Service 정리하기|@bluayer|
-|다섯째 주|2021.04.04|Service|||
-
+|다섯째 주|2021.04.04|Service|Volume 정리하기||
+|여섯째 주|2021.04.18|Volume|컨피그맵과 시크릿 정리하기||
+|일곱째 주|2021.04.25|컨피그맵과 시크릿|||
 
 ### Contributors
