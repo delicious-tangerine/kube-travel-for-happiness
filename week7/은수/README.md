@@ -19,7 +19,7 @@
 1번의 경우 버전 v1 파드를 관리하는 레플리카셋의 파드 템플릿의 컨테이너 이미지를 v2로 변경한 뒤, 해당 레플리케이션 컨트롤러에 의해 관리되는 모든 파드를 삭제하면 됩니다. 그러면 컨트롤러에 의해 v2 파드가 즉시 스핀업됩니다.
 
 <figure>
-  <img src="./media/kubernetes_deployment/1.jpeg"/>
+  <img src="./kubernetes_deployment/1.jpeg"/>
   <figcaption style="color: grey;">파드 템플릿을 변경하고 오래된 파드를 삭제하는 방식</figcaption>
 </figure>
 
@@ -30,7 +30,7 @@
 2번의 경우 새로운 레플리카셋을 먼저 만들고, 레플리카셋이 스핀업한 파드가 모두 기동되면 서비스가 새로 기동된 파드를 가리키도록 셀렉터를 변경한 뒤 기존 레플리카셋을 삭제하면 됩니다. 이 경우 잠시 동안 두 배의 파드가 실행되므로 더 많은 하드웨어 리소스가 필요합니다.
 
 <figure>
-  <img src="./media/kubernetes_deployment/2.jpeg"/>
+  <img src="./kubernetes_deployment/2.jpeg"/>
   <figcaption style="color: grey;">새 레플리카셋 생성 후 기존 서비스의 셀렉터를 변경하는 방식</figcaption>
 </figure>
 
@@ -39,7 +39,7 @@
 새 파드가 모두 실행된 후 이전 파드를 한 번에 삭제하는 방법 대신 점진적으로 파드를 교체해나가는 롤링 업데이트(rolling update)를 수행할 수도 있습니다.
 
 <figure>
-  <img src="./media/kubernetes_deployment/3.jpeg"/>
+  <img src="./kubernetes_deployment/3.jpeg"/>
   <figcaption style="color: grey;">레플리케이션 컨트롤러 두 개를 사용한 파드의 롤링 업데이트</figcaption>
 </figure>
 
@@ -54,7 +54,7 @@ $ kubectl rolling-update OLD_CONTROLLER_NAME NEW_CONTROLLER_NAME --image=NEW_CON
 위 처럼 기존 컨트롤러 이름과 새롭게 생성할 컨트롤러의 이름을 지정한 다음, 원래 이미지를 교체할 새 이미지를 명령줄 인자로 제공하면 됩니다. 이렇게 하면 쿠버네티스는 새로운 컨트롤러를 생성하고 롤링 업데이트에 필요한 모든 단계의 명령을 자동으로 수행합니다. 이 때 기존의 컨트롤러에 의해 새로 생성된 파드가 제어되지 않도록 두 컨트롤러에 `deployment` 라벨 셀렉터를 추가하고, 이 라벨 셀렉터에 의해 새로 생성된 파드가 기존의 컨트롤러에게 제어되지 않도록 구분합니다.
 
 <figure>
-  <img src="./media/kubernetes_deployment/4.jpeg"/>
+  <img src="./kubernetes_deployment/4.jpeg"/>
   <figcaption style="color: grey;">롤링 업데이트 중 요청을 이전 파드와 새로운 파드로 전달하는 모습</figcaption>
 </figure>
 
@@ -166,7 +166,7 @@ $ kubectl set image deployment kubia nodejs=luksa/kubia:v2
 위 명령을 실행하면 롤링 업데이트가 시작되고, 이 동안 디플로이먼트 영역에서 발생한 이벤트는 `rolling-update` 명령을 수행하는 동안 발생하는 이벤트와 유사합니다. 추가 레플리카셋이 생성됐고, 그 후 천천히 스케일업하여 이전 레플리카셋의 크기를 0으로 스케일 다운합니다.
 
 <figure>
-  <img src="./media/kubernetes_deployment/5.jpeg"/>
+  <img src="./kubernetes_deployment/5.jpeg"/>
   <figcaption style="color: grey;">롤링 업데이트 시작과 종료 시점의 디플로이먼트</figcaption>
 </figure>
 
@@ -265,14 +265,14 @@ spec:
 이 경우를 그림으로 나타내면 다음과 같습니다.
 
 <figure>
-  <img src="./media/kubernetes_deployment/6.jpeg"/>
+  <img src="./kubernetes_deployment/6.jpeg"/>
   <figcaption style="color: grey;">레플리카 3개와 기본 maxSurge=1, maxUnavailable=0 인 디플로이먼트의 롤링 업데이트 과정</figcaption>
 </figure>
 
 만약 `maxUnavailable` 이 1로 설정되면 롤링 업데이트 과정은 다음과 같습니다.
 
 <figure>
-  <img src="./media/kubernetes_deployment/7.jpeg"/>
+  <img src="./kubernetes_deployment/7.jpeg"/>
   <figcaption style="color: grey;">레플리카 3개와 기본 maxSurge=1, maxUnavailable=1 인 디플로이먼트의 롤링 업데이트 과정</figcaption>
 </figure>
 
@@ -398,7 +398,7 @@ kubia-86499d4c5f-68zsd   0/1     Running   0          34s
 결과적으로 새 파드는 아직 준비되지 않은 것으로 판단되며 서비스의 엔드포인트에서 제거됩니다. 이것이 바로 서비스로 요청을 보내도 파드에 접속하지 못한 이유입니다. 제대로 동작하지 않는 파드에 사용자가 접근할 수 없도록 하기 때문인데 이것이 바로 우리가 바라던 것입니다.
 
 <figure>
-  <img src="./media/kubernetes_deployment/8.jpeg"/>
+  <img src="./kubernetes_deployment/8.jpeg"/>
   <figcaption style="color: grey;">새 파드에서 레디니스 프로브의 실패로 차단된 디플로이먼트</figcaption>
 </figure>
 
