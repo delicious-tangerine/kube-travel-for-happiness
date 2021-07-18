@@ -41,7 +41,7 @@
 위에서 언급한 구성요소는 모두 개별 프로세스로 실행됩니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.1.jpeg"/>
+  <img src="./kubernetes_ch11/11.1.jpeg"/>
 </figure>
 
 **구성요소가 서로 통신하는 방법**
@@ -111,7 +111,7 @@ kubectl exec -it \
 합의 알고리즘은 클러스터가 다음 상태로 진행하기 위해 과반수가 필요합니다. 만약 세 노드가 있는 클러스터에서 한 노드의 연결이 끊어지면 두 개의 노드를 포함하는 그룹이 여전히 과반을 가지고 있으므로 클러스터의 상태를 계속 변경할 수 있습니다. 그리고 나중에 끊어졌던 노드가 다시 연결될 경우 과반 그룹의 상태를 따라갈 수 있습니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.2.jpeg"/>
+  <img src="./kubernetes_ch11/11.2.jpeg"/>
 </figure>
 
 이러한 이유로 일반적으로 etcd는 홀수로 배포합니다. 대규모 etcd 클러스터에서 5대 혹은 7대의 노드면 각각 2대, 3대 노드의 실패도 감당할 수 있기 때문입니다.
@@ -123,7 +123,7 @@ kubectl exec -it \
 아래 그림은 API 서버가 요청을 받을 때 내부에서 발생하는 상황을 보여줍니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.3.jpeg"/>
+  <img src="./kubernetes_ch11/11.3.jpeg"/>
 </figure>
 
 **인증 플러그인으로 클라이언트 인증**
@@ -154,7 +154,7 @@ API 서버는 요청한 작업이 요청한 리소스를 대상으로 수행할 
 API 서버는 리소스를 etcd에 저장 후 클라이언트에 응답을 반환함과 동시에 관련된 클라이언트(ex. 컨트롤러 매니저의 컨트롤러)들에 통보해줍니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.4.jpeg"/>
+  <img src="./kubernetes_ch11/11.4.jpeg"/>
 </figure>
 
 그리하여 오브젝트가 갱신될 때마다 API 서버는 오브젝트를 감시하고 있는 연결된 모든 클라이언트에게 오브젝트의 새로운 버전을 보내줍니다.
@@ -174,7 +174,7 @@ API 서버는 리소스를 etcd에 저장 후 클라이언트에 응답을 반�
   - 만약 동점인 노드가 여러개라면 라운드로빈 적용
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.5.jpeg"/>
+  <img src="./kubernetes_ch11/11.5.jpeg"/>
 </figure>
 
 **수용 가능한 노드 찾기**
@@ -224,7 +224,7 @@ API 서버는 리소스를 etcd에 저장 후 클라이언트에 응답을 반�
 예를 들어 레플리카 수와 의도한 것보다 적으면 새로운 파드 매니페스트를 생성해 API 서버에 게시합니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.6.jpeg"/>
+  <img src="./kubernetes_ch11/11.6.jpeg"/>
 </figure>
 
 이는 모든 컨트롤러의 동작 방식과 동일합니다.
@@ -254,7 +254,7 @@ API 서버는 리소스를 etcd에 저장 후 클라이언트에 응답을 반�
 서비스는 연결된 파드의 IP와 포트 정보를 포함하는 엔드포인트 목록을 포함한다는 것을 기억하실 겁니다. 엔드포인트 컨트롤러는 라벨 셀렉터와 일치하는 파드의 IP와 포트로 엔드포인트 리스트를 계속 갱신하는 활성 구성요소 입니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.7.jpeg"/>
+  <img src="./kubernetes_ch11/11.7.jpeg"/>
 </figure>
 
 위 그림처럼 엔드포인트 컨트롤러는 서비스와 파드를 모두 감시하고, 서비스가 추가 또는 갱신되거나 파드가 추가, 갱신, 삭제될 경우 서비스의 파드 셀렉터와 일치하는 파드를 선택해 IP와 포트를 엔드포인트 리소스에 추가합니다. **엔드포인트 오브젝트는 독립형 오브젝트로, 컨트롤러가 필요한 경우에 직접 오브젝트를 생성합니다**.
@@ -278,7 +278,7 @@ Kubelet은 워커 노드에서 실행하는 모든 것을 담당하는 구성요
 Kubelet은 API 서버와 통신해 파드 매니페스트를 가져오지만, 다음과 같이 로컬 디렉터리(`/etc/kubernetes/manifest`) 안에 저장된 매니페스트 파일을 기반으로 파드를 실행할 수도 있습니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.8.jpeg"/>
+  <img src="./kubernetes_ch11/11.8.jpeg"/>
 </figure>
 
 이 기능은 컨트롤 플레인 구성요소를 파드로 실행하는 데 사용됩니다. 그리하여 시스템 구성 요소가 기본적으로 실행되지 않고 파드 매니페스트로 실행하고 관리하도록 합니다.
@@ -292,13 +292,13 @@ kube-proxy는 클라이언트가 쿠버네티스 API로 정의한 서비스에 �
 kube-proxy의 초기 구현은 userspace에서 동작하는 프록시였습니다. 실제 서버 프로세스가 연결을 수락하고 이를 파드로 전달했습니다. 서비스 IP로 향하는 연결을 가로채기 위해 프록시는 iptables 규칙을 설정해 이를 프록시 서버로 전송했습니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.9.jpeg"/>
+  <img src="./kubernetes_ch11/11.9.jpeg"/>
 </figure>
 
 이러한 동작 때문에 kube-proxy라는 이름을 얻었지만, 현재는 우수한 구현체에서 iptables 규칙만을 사용해 프록시 서버를 거치지않고 패킷을 무작위로 선택한 백엔드 파드로 전달합니다. 이 모드를 iptables 프록시 모드라고 하며 다음과 같이 동작합니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.10.jpeg"/>
+  <img src="./kubernetes_ch11/11.10.jpeg"/>
 </figure>
 
 두 모드의 가장 큰 차이점은 패킷이 kube-proxy를 통과해 userspace에서 처리되는지 아니면 kernelspace에서 처리되는지 여부로, 성능에 큰 영향을 줍니다.
@@ -344,7 +344,7 @@ DNS 서버 파드는 kube-dns 서비스로 노출되므로, 해당 파드를 다
 디플로이먼트 매니페스트를 kubectl 명령으로 API 서버에 게시한다고 가정해봅시다. API 서버는 디플로이먼트 매니페스트를 etcd에 저장하고 응답을 반환하는데, 이때 연계된 이벤트가 발생하게 됩니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.12.jpeg"/>
+  <img src="./kubernetes_ch11/11.12.jpeg"/>
 </figure>
 
 위 그림을 순서대로 break down 해보겠습니다.
@@ -417,7 +417,7 @@ b47e4faffac3   k8s.gcr.io/pause:3.2   "/pause"                 19 seconds ago   
 이 pause 컨테이너는 파드의 모든 컨테이너를 함께 담고 있는 컨테이너 입니다. 파드의 모든 컨테이너가 동일한 네트워크와 리눅스 네임스페이스를 공유하는데, 퍼즈 컨테이너는 이러한 네임스페이스를 모두 보유하는게 유일한 목적인 인프라스트럭처 컨테이너 입니다. 파드의 다른 사용자 정의 컨테이너는 파드 인프라스트럭처 컨테이너의 네임스페이스를 사용합니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.13.jpeg"/>
+  <img src="./kubernetes_ch11/11.13.jpeg"/>
 </figure>
 
 실제 애플리케이션 컨테이너는 종료되고 다시 시작할 수 있는데, 이를 위해선 이전과 동일한 리눅스 네임스페이스의 일부가 돼야 합니다. 인프라스트럭처 컨테이너의 라이프사이클은 파드의 라이프사이클과 똑같기 때문에 이를 가능하게 합니다. 이 컨테이너는 파드가 스케줄링될 때 시작해서 파드가 삭제되기 전 까지 실행됩니다. 만약 인프라스트럭처 컨테이너가 그 중간에 종료되면, kubelet이 인프라스트럭처와 파드의 모든 컨테이너를 다시 생성합니다.
@@ -433,7 +433,7 @@ b47e4faffac3   k8s.gcr.io/pause:3.2   "/pause"                 19 seconds ago   
 파드 간의 네트워킹이 어떻게 이뤄지는 이해를 돕기 위해 아래 그림을 살펴봅시다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.14.jpeg"/>
+  <img src="./kubernetes_ch11/11.14.jpeg"/>
 </figure>
 
 파드 A가 파드 B에 네트워크 패킷을 보내는데, 이때 source IP와 destination IP가 변경되지 않습니다. 마치 파드 내부에서 실행중인 애플리케이션의 네트워킹이 동일한 네트워크 스위치에 접속한 시스템에서 실행되는 것처럼 간단하고 정확하게 이뤄지도록 해줍니다.
@@ -447,7 +447,7 @@ b47e4faffac3   k8s.gcr.io/pause:3.2   "/pause"                 19 seconds ago   
 위에서 파드의 IP 주소와 네트워크 네임스페이스가 인프라스트럭처 컨테이너(pause)에 의해 설정되고 유지되는 것을 보았습니다. 파드의 컨테이너는 해당 네트워크 네임스페이스를 사용합니다. 따라서 파드의 네트워크 인터페이스는 인프라스트럭처 컨테이너에서 설정한 것입니다. 인터페이스를 생성하는 방법과 생성한 인터페이스를 모든 다른 파드 인터페이스에 연결하는 방법을 살펴보겠습니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.15.jpeg"/>
+  <img src="./kubernetes_ch11/11.15.jpeg"/>
 </figure>
 
 **동일한 노드에서 파드 간의 통신**
@@ -461,7 +461,7 @@ b47e4faffac3   k8s.gcr.io/pause:3.2   "/pause"                 19 seconds ago   
 서로 다른 노드 사이에 브리지를 연결하는 방법은 여러 가지가 있습니다. 이는 오버레이, 언더레이 혹은 일반적인 3계층 라우팅을 통해 가능하고 앞으로 살펴보겠습니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.16.jpeg"/>
+  <img src="./kubernetes_ch11/11.16.jpeg"/>
 </figure>
 
 위 그림은 3계층 네트워킹으로 두 노드에서 노드 간 통신을 가능하게 하려면 노드의 물리 네트워크 인터페이스도 브리지에 연결해야 한다는 것을 보여줍니다. 노드 A의 라우팅 테이블은 10.1.2.0/24로 향하는 모든 패킷이 노드 B로 전달되도록 설정해야 하고, 노드 B에서는 10.1.1.0/24로 향하는 패킷이 노드 A로 전달되도록 설정하는 것이 필요합니다.
@@ -493,7 +493,7 @@ API 서버에서 서비스를 생성하면, 가상 IP 주소가 바로 할당됩
 kube-proxy는 API 서버에서 서비스가 변경되는 것을 감지하는 것 외에도 엔드포인트 오브젝트가 변경되는 것을 같이 감시합니다. 엔드포인트는 서비스를 지원하는 모든 파드의 IP/포트 쌍을 가지고 있습니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.17.jpeg"/>
+  <img src="./kubernetes_ch11/11.17.jpeg"/>
 </figure>
 
 위 그림은 kube-proxy가 하는 일과 클라이언트 파드가 전송한 패킷이 서비스 지원 파드 중 하나에 도달하는 방법을 보여줍니다. 파드 A가 패킷을 보내면 목적지는 서비스의 IP와 포트로 지정됩니다. 패킷이 네트워크로 전송되기 전에 노드 A의 커널이 노드에 설정된 iptables 규칙에 따라 먼저 처리하는데, 커널은 IP가 172.30.0.1이고 포트가 80이라면 임의로 선택된 파드의 IP와 포트로 교체돼야 한다고 알려줍니다. 그리하여 파드 B2가 무작위로 선택되어 패킷의 목적지 IP/포트는 파드 B2의 IP/포트로 변경됩니다. 그 이후는 서비스를 통하지 않고 파드가 직접 패킷을 보내는 것과 같습니다.
@@ -521,7 +521,7 @@ kube-proxy는 API 서버에서 서비스가 변경되는 것을 감지하는 것
 컨트롤 플레인 구성요소의 가용성을 높이기 위해 관련된 내용을 살펴봅시다. 아래 그림은 고가용성 클러스터를 도식화한 그림입니다.
 
 <figure>
-  <img src="./kubernetes_ch11/kubernetes_ch11/11.18.jpeg"/>
+  <img src="./kubernetes_ch11/11.18.jpeg"/>
 </figure>
 
 **etcd 클러스터 실행**
