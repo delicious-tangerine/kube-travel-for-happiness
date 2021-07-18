@@ -1,16 +1,4 @@
----
-title: 쿠버네티스 내부 동작 원리 이해하기
-description: 쿠버네티스의 각 구성요소가 어떻게 동작하고 파드간의 통신이 어떻게 이뤄지며 쿠버네티스 클러스터의 고가용성을 달성하기 위해 어떻게 해야하는지 알아봅시다
-date: "2021-07-18T21:10:00.000Z"
-template: post
-slug: "understanding-how-kubernetes-works"
-category: DevOps
-tags:
-  - DevOps
-  - Kubernetes
-  - Docker
-socialImage: "./kubernetes_ch11/kubernetes.png"
----
+# Week 09 - Understanding how kubernetes works
 
 이번 포스팅에서는 쿠버네티스 클러스터의 구성 요소들이 어떻게 동작하지에 대해서 알아보겠습니다. 또한 파드가 다른 노드에 있는 파드를 어떻게 찾을 수 있는지를 네트워크 관점으로 소개해드리겠습니다. 그리고 쿠버네티스 서비스의 동작 원리와 클러스터의 고가용성을 달성하기 위한 방법은 무엇인지 알아보도록 하곘습니다.
 
